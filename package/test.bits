@@ -1,5 +1,8 @@
 import p2pkh
 
+loop 3
+  dup
+  drop
+end
 f7f8e0e8cb23d7cf1f628e8940154c6c122f6193
 p2pkh
-

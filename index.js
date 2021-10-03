@@ -178,8 +178,29 @@ function compile(symbols) {
       const macroOpCodes = compile(marcoSymbols)
 
       macros[macroName] = macroOpCodes
+    } else if (symbol === "loop") {
+      const times = symbols.shift()
+      const loopSymobls = []
+
+      let end = false
+      while (!end) {
+        const nextLoopSymbol = symbols.shift()
+        if (nextLoopSymbol === "end") {
+          end = true
+        } else {
+          loopSymobls.push(nextLoopSymbol)
+        }
+      }
+
+      const compiledLoop = compile(loopSymobls)
+
+      console.log(compiledLoop)
+
+      for (let i = 0; i < times; i++) {
+        output.push(...compiledLoop)
+      }
     } else if (Object.keys(macros).includes(symbol)) {
-      symbols.unshift(...macros[symbol])
+      output.push(...macros[symbol])
     } else if (opcodes.includes(symbol)) {
       output.push(`OP_${symbol.toUpperCase()}`)
     } else {
