@@ -1,0 +1,6 @@
+toaltstack
+dup
+hash160
+fromaltstack
+equalverify
+checksig
